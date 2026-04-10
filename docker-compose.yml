@@ -1,0 +1,97 @@
+version: "3.9"
+services:
+  mongodb:
+    image: mongo:latest
+    container_name: finanscepte-mongodb
+    restart: unless-stopped
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+
+  service-user:
+    build: ./backend/service-user
+    container_name: finanscepte-service-user
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_user
+    ports:
+      - "8081:8081"
+    depends_on:
+      - mongodb
+
+  service-product:
+    build: ./backend/service-product
+    container_name: finanscepte-service-product
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_product
+    ports:
+      - "8082:8082"
+    depends_on:
+      - mongodb
+
+  api-gateway:
+    build: ./backend/api-gateway
+    container_name: finanscepte-api-gateway
+    ports:
+      - "8080:8080"
+    depends_on:
+      - service-user
+      - service-product
+      - transaction-service
+      - subscription-service
+      - budget-service
+      - notification-service
+      - report-service
+
+  transaction-service:
+    build: ./backend/transaction-service
+    container_name: finanscepte-transaction-service
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_transaction
+    ports:
+      - "8083:8083"
+    depends_on:
+      - mongodb
+
+  subscription-service:
+    build: ./backend/subscription-service
+    container_name: finanscepte-subscription-service
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_subscription
+    ports:
+      - "8084:8084"
+    depends_on:
+      - mongodb
+
+  budget-service:
+    build: ./backend/budget-service
+    container_name: finanscepte-budget-service
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_budget
+    ports:
+      - "8085:8085"
+    depends_on:
+      - mongodb
+
+  notification-service:
+    build: ./backend/notification-service
+    container_name: finanscepte-notification-service
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_notification
+    ports:
+      - "8086:8086"
+    depends_on:
+      - mongodb
+
+  report-service:
+    build: ./backend/report-service
+    container_name: finanscepte-report-service
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_report
+    ports:
+      - "8087:8087"
+    depends_on:
+      - mongodb
+
+volumes:
+  mongo_data:
