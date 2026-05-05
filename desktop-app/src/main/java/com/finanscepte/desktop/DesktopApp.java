@@ -9,9 +9,11 @@ public class DesktopApp extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/main-view.fxml")), 900, 600);
-        stage.setTitle("FinansCepte Desktop");
+        Scene scene = new Scene(FXMLLoader.load(getClass().getResource("/login-view.fxml")), 400, 500);
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        stage.setTitle("FinansCepte - Giris");
         stage.setScene(scene);
+        stage.setResizable(false);
         stage.show();
     }
 

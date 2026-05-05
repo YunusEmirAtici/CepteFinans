@@ -1,6 +1,6 @@
 package com.finanscepte.subscription.service.impl;
 
-import com.finanscepte.subscription.exception.ResourceNotFoundException;
+import com.finanscepte.common.exception.ResourceNotFoundException;
 import com.finanscepte.subscription.model.Subscription;
 import com.finanscepte.subscription.repository.SubscriptionRepository;
 import com.finanscepte.subscription.service.SubscriptionService;

@@ -1,8 +1,7 @@
 package com.finanscepte.user.service.impl;
 
-import com.finanscepte.user.exception.ResourceNotFoundException;
 import com.finanscepte.user.model.User;
-import com.finanscepte.user.repository.UserMongoRepository;
+import com.finanscepte.user.service.DualUserService;
 import com.finanscepte.user.service.UserService;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
@@ -12,26 +11,25 @@ import org.springframework.stereotype.Service;
 @RequiredArgsConstructor
 public class UserServiceImpl implements UserService {
 
-    private final UserMongoRepository userMongoRepository;
+    private final DualUserService dualUserService;
 
     @Override
     public User create(User entity) {
-        return userMongoRepository.save(entity);
+        return dualUserService.create(entity);
     }
 
     @Override
     public User getById(String id) {
-        return userMongoRepository.findById(id)
-                .orElseThrow(() -> new ResourceNotFoundException("User not found: " + id));
+        return dualUserService.getById(id);
     }
 
     @Override
     public List<User> getAll() {
-        return userMongoRepository.findAll();
+        return dualUserService.getAll();
     }
 
     @Override
     public void delete(String id) {
-        userMongoRepository.deleteById(id);
+        dualUserService.delete(id);
     }
 }

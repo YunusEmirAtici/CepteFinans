@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.finanscepte.user.exception.ResourceNotFoundException;
+import com.finanscepte.common.exception.ResourceNotFoundException;
 import com.finanscepte.user.model.User;
 import com.finanscepte.user.repository.UserMongoRepository;
 import com.finanscepte.user.service.impl.UserServiceImpl;

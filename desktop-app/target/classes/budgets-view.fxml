@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.finanscepte.desktop.controller.BudgetsController"
+      spacing="12"
+      styleClass="screen-root">
+    <padding>
+        <Insets top="16" right="16" bottom="16" left="16"/>
+    </padding>
+
+    <HBox spacing="10" alignment="CENTER_LEFT">
+        <Label text="Butce Yonetimi" styleClass="screen-title"/>
+        <HBox HBox.hgrow="ALWAYS"/>
+        <Label fx:id="monthlySummaryLabel" styleClass="screen-status-label"/>
+        <Button text="Yenile" onAction="#handleRefresh" styleClass="refresh-button"/>
+    </HBox>
+
+    <HBox spacing="8">
+        <TextField fx:id="categoryField" promptText="Kategori" styleClass="form-input" prefWidth="180"/>
+        <TextField fx:id="limitAmountField" promptText="Limit" styleClass="form-input" prefWidth="120"/>
+        <TextField fx:id="spentAmountField" promptText="Harcanan (opsiyonel)" styleClass="form-input" prefWidth="160"/>
+        <TextField fx:id="monthField" promptText="Ay" styleClass="form-input" prefWidth="80"/>
+        <TextField fx:id="yearField" promptText="Yil" styleClass="form-input" prefWidth="90"/>
+        <Button text="Ekle" onAction="#handleCreateBudget" styleClass="primary-button"/>
+    </HBox>
+
+    <TableView fx:id="budgetsTable" VBox.vgrow="ALWAYS">
+        <columns>
+            <TableColumn fx:id="categoryColumn" text="Kategori" prefWidth="150"/>
+            <TableColumn fx:id="limitColumn" text="Limit" prefWidth="110"/>
+            <TableColumn fx:id="spentColumn" text="Harcanan" prefWidth="110"/>
+            <TableColumn fx:id="monthColumn" text="Ay" prefWidth="70"/>
+            <TableColumn fx:id="yearColumn" text="Yil" prefWidth="80"/>
+            <TableColumn fx:id="progressColumn" text="Ilerleme" prefWidth="180"/>
+            <TableColumn fx:id="statusColumn" text="Durum" prefWidth="120"/>
+            <TableColumn fx:id="actionColumn" text="Aksiyon" prefWidth="100"/>
+        </columns>
+    </TableView>
+
+    <Label fx:id="budgetStatusLabel" styleClass="screen-status-label"/>
+</VBox>

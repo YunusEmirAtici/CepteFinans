@@ -8,90 +8,200 @@ services:
       - "27017:27017"
     volumes:
       - mongo_data:/data/db
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongosh localhost:27017/test --quiet
+      interval: 10s
+      timeout: 10s
+      retries: 5
+      start_period: 40s
 
   service-user:
-    build: ./backend/service-user
+    build:
+      context: ./backend
+      dockerfile: service-user/Dockerfile
     container_name: finanscepte-service-user
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_user
+      - ACTIVE_PROFILE=mongo
     ports:
       - "8081:8081"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8081/api/users"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   service-product:
-    build: ./backend/service-product
+    build:
+      context: ./backend
+      dockerfile: service-product/Dockerfile
     container_name: finanscepte-service-product
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_product
     ports:
       - "8082:8082"
     depends_on:
-      - mongodb
-
-  api-gateway:
-    build: ./backend/api-gateway
-    container_name: finanscepte-api-gateway
-    ports:
-      - "8080:8080"
-    depends_on:
-      - service-user
-      - service-product
-      - transaction-service
-      - subscription-service
-      - budget-service
-      - notification-service
-      - report-service
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8082/api/products"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   transaction-service:
-    build: ./backend/transaction-service
+    build:
+      context: ./backend
+      dockerfile: transaction-service/Dockerfile
     container_name: finanscepte-transaction-service
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_transaction
     ports:
       - "8083:8083"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8083/api/transactions"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   subscription-service:
-    build: ./backend/subscription-service
+    build:
+      context: ./backend
+      dockerfile: subscription-service/Dockerfile
     container_name: finanscepte-subscription-service
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_subscription
     ports:
       - "8084:8084"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8084/api/subscriptions"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   budget-service:
-    build: ./backend/budget-service
+    build:
+      context: ./backend
+      dockerfile: budget-service/Dockerfile
     container_name: finanscepte-budget-service
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_budget
     ports:
       - "8085:8085"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8085/api/budgets/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   notification-service:
-    build: ./backend/notification-service
+    build:
+      context: ./backend
+      dockerfile: notification-service/Dockerfile
     container_name: finanscepte-notification-service
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_notification
     ports:
       - "8086:8086"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8086/api/notifications/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
 
   report-service:
-    build: ./backend/report-service
+    build:
+      context: ./backend
+      dockerfile: report-service/Dockerfile
     container_name: finanscepte-report-service
     environment:
       - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/finanscepte_report
     ports:
       - "8087:8087"
     depends_on:
-      - mongodb
+      mongodb:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8087/api/reports/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  api-gateway:
+    build:
+      context: ./backend
+      dockerfile: api-gateway/Dockerfile
+    container_name: finanscepte-api-gateway
+    environment:
+      - AUTH_MODE=none
+      - API_KEY=dev-key
+    ports:
+      - "8080:8080"
+    depends_on:
+      service-user:
+        condition: service_healthy
+      service-product:
+        condition: service_healthy
+      transaction-service:
+        condition: service_healthy
+      subscription-service:
+        condition: service_healthy
+      budget-service:
+        condition: service_healthy
+      notification-service:
+        condition: service_healthy
+      report-service:
+        condition: service_healthy
+    networks:
+      - finanscepte-network
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://localhost:8080/api/users"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
 volumes:
   mongo_data:
+
+networks:
+  finanscepte-network:
+    driver: bridge

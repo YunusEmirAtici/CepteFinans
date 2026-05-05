@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.finanscepte.transaction.exception.ResourceNotFoundException;
+import com.finanscepte.common.exception.ResourceNotFoundException;
 import com.finanscepte.transaction.model.Transaction;
 import com.finanscepte.transaction.model.TransactionType;
 import com.finanscepte.transaction.repository.TransactionRepository;

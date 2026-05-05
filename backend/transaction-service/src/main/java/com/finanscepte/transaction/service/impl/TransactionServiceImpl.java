@@ -1,6 +1,6 @@
 package com.finanscepte.transaction.service.impl;
 
-import com.finanscepte.transaction.exception.ResourceNotFoundException;
+import com.finanscepte.common.exception.ResourceNotFoundException;
 import com.finanscepte.transaction.model.Transaction;
 import com.finanscepte.transaction.model.TransactionType;
 import com.finanscepte.transaction.repository.TransactionRepository;

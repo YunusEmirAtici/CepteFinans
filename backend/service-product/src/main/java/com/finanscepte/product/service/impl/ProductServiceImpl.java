@@ -1,6 +1,6 @@
 package com.finanscepte.product.service.impl;
 
-import com.finanscepte.product.exception.ResourceNotFoundException;
+import com.finanscepte.common.exception.ResourceNotFoundException;
 import com.finanscepte.product.model.Product;
 import com.finanscepte.product.repository.ProductRepository;
 import com.finanscepte.product.service.ProductService;

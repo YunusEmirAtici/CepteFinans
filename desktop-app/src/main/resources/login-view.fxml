@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox xmlns="http://javafx.com/javafx/21"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="com.finanscepte.desktop.controller.LoginController"
+      spacing="16"
+      alignment="CENTER"
+      styleClass="login-root">
+
+    <Label text="FinansCepte" styleClass="login-title"/>
+    <Label text="Kisisel Finans ve Abonelik Takip Sistemi" styleClass="login-subtitle"/>
+
+    <VBox spacing="8" alignment="CENTER_LEFT" style="-fx-min-width: 280;">
+        <Label text="Email" styleClass="form-label"/>
+        <TextField fx:id="emailField" promptText="Email adresiniz" styleClass="form-input"/>
+
+        <Label text="Sifre" styleClass="form-label"/>
+        <PasswordField fx:id="passwordField" promptText="Sifreniz" styleClass="form-input"/>
+    </VBox>
+
+    <Button text="Giris Yap" onAction="#handleLogin" styleClass="login-button"/>
+    <Label fx:id="errorLabel" styleClass="error-label"/>
+</VBox>

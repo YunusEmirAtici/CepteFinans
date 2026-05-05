@@ -1,0 +1,218 @@
+/* Dark Theme - Dracula inspired */
+.root {
+    -fx-background-color: #282a36;
+    -fx-font-family: "Segoe UI", sans-serif;
+}
+
+.login-root {
+    -fx-background-color: #282a36;
+    -fx-padding: 40;
+}
+
+.login-title {
+    -fx-font-size: 32px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #50fa7b;
+}
+
+.login-subtitle {
+    -fx-font-size: 14px;
+    -fx-text-fill: #6272a4;
+}
+
+.form-label {
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 13px;
+}
+
+.form-input {
+    -fx-background-color: #44475a;
+    -fx-text-fill: #f8f8f2;
+    -fx-prompt-text-fill: #6272a4;
+    -fx-border-color: #6272a4;
+    -fx-border-radius: 6;
+    -fx-background-radius: 6;
+    -fx-padding: 8 12;
+    -fx-font-size: 14px;
+}
+
+.form-input:focused {
+    -fx-border-color: #50fa7b;
+}
+
+.login-button {
+    -fx-background-color: #50fa7b;
+    -fx-text-fill: #282a36;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-padding: 10 32;
+    -fx-background-radius: 8;
+    -fx-cursor: hand;
+}
+
+.login-button:hover {
+    -fx-background-color: #69ff94;
+}
+
+.error-label {
+    -fx-text-fill: #ff5555;
+    -fx-font-size: 12px;
+}
+
+/* Dashboard */
+.dashboard-root {
+    -fx-background-color: #282a36;
+    -fx-padding: 24;
+}
+
+.dashboard-title {
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f8f8f2;
+}
+
+.summary-card {
+    -fx-background-color: #44475a;
+    -fx-padding: 20 40;
+    -fx-background-radius: 12;
+    -fx-spacing: 6;
+    -fx-min-width: 180;
+}
+
+.summary-label {
+    -fx-text-fill: #6272a4;
+    -fx-font-size: 13px;
+}
+
+.summary-value {
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+}
+
+.income-text {
+    -fx-text-fill: #50fa7b;
+}
+
+.expense-text {
+    -fx-text-fill: #ff5555;
+}
+
+.chart-container {
+    -fx-background-color: #44475a;
+    -fx-background-radius: 12;
+    -fx-padding: 12;
+}
+
+.alert-container {
+    -fx-background-color: #44475a;
+    -fx-background-radius: 12;
+    -fx-padding: 16;
+}
+
+.alert-title {
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+.refresh-button {
+    -fx-background-color: #8be9fd;
+    -fx-text-fill: #282a36;
+    -fx-font-weight: bold;
+    -fx-padding: 6 16;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.logout-button {
+    -fx-background-color: #ff5555;
+    -fx-text-fill: #f8f8f2;
+    -fx-font-weight: bold;
+    -fx-padding: 6 16;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+/* App shell */
+.app-shell-root {
+    -fx-background-color: #282a36;
+}
+
+.sidebar {
+    -fx-background-color: #21222c;
+}
+
+.sidebar-title {
+    -fx-text-fill: #50fa7b;
+    -fx-font-size: 22px;
+    -fx-font-weight: bold;
+    -fx-padding: 0 0 8 0;
+}
+
+.sidebar-label {
+    -fx-text-fill: #6272a4;
+    -fx-font-size: 12px;
+}
+
+.sidebar-user {
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 14px;
+    -fx-padding: 0 0 8 0;
+}
+
+.sidebar-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: #f8f8f2;
+    -fx-alignment: CENTER_LEFT;
+    -fx-padding: 8 12;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.sidebar-button:hover {
+    -fx-background-color: #44475a;
+}
+
+.sidebar-button-active {
+    -fx-background-color: #6272a4;
+}
+
+.content-wrapper {
+    -fx-background-color: #282a36;
+}
+
+/* Generic screens */
+.screen-root {
+    -fx-background-color: #282a36;
+}
+
+.screen-title {
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+}
+
+.screen-status-label {
+    -fx-text-fill: #8be9fd;
+    -fx-font-size: 12px;
+}
+
+.primary-button {
+    -fx-background-color: #50fa7b;
+    -fx-text-fill: #282a36;
+    -fx-font-weight: bold;
+    -fx-padding: 8 14;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}
+
+.danger-button {
+    -fx-background-color: #ff5555;
+    -fx-text-fill: #f8f8f2;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-padding: 6 10;
+    -fx-background-radius: 6;
+    -fx-cursor: hand;
+}

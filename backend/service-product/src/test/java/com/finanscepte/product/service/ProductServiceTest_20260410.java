@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import com.finanscepte.product.exception.ResourceNotFoundException;
+import com.finanscepte.common.exception.ResourceNotFoundException;
 import com.finanscepte.product.model.Product;
 import com.finanscepte.product.repository.ProductRepository;
 import com.finanscepte.product.service.impl.ProductServiceImpl;
