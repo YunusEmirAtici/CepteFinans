@@ -1,4 +1,4 @@
-# FinTrack - Kisisel Finans ve Abonelik Takip Sistemi
+# CepteFinans - Kisisel Finans ve Abonelik Takip Sistemi
 
 Bu repo, Java 17+ tabanli mikroservis mimarisinde gelistirilen FinTrack uygulamasinin kod tabanidir.
 
